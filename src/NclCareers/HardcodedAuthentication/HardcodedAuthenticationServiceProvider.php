@@ -1,6 +1,7 @@
 <?php namespace NclCareers\HardcodedAuthentication;
 
-use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\ServiceProvider,
+    Auth;
 
 class HardcodedAuthenticationServiceProvider extends ServiceProvider {
 
@@ -16,9 +17,15 @@ class HardcodedAuthenticationServiceProvider extends ServiceProvider {
 	 *
 	 * @return void
 	 */
-	public function register()
+	public function register() {}
+
+	public function boot()
 	{
-		//
+		Auth::extend('hardcoded', function($app) {
+			$provider =  new HardcodedUserProvider();
+
+			return new \Illuminate\Auth\Guard($provider, $app['session.store']);
+		});
 	}
 
 	/**
