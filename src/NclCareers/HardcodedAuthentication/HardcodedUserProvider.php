@@ -20,7 +20,7 @@ class HardcodedUserProvider implements UserProviderInterface
 	public function retrieveByCredentials(array $credentials)
 	{
 		if ($credentials['email'] !== $this->getUsername())
-			return false;
+			return null;
 
 		return $this->createUser();
 	}
