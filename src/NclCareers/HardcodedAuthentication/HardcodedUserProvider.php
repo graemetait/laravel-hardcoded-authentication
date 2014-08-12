@@ -17,6 +17,15 @@ class HardcodedUserProvider implements UserProviderInterface
 		return $this->createUser();
 	}
 
+	public function retrieveByToken($identifier, $token)
+	{
+		return null;
+	}
+
+	public function updateRememberToken(UserInterface $user, $token)
+	{
+	}
+
 	public function retrieveByCredentials(array $credentials)
 	{
 		if ($credentials['email'] !== $this->getUsername())
